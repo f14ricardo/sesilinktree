@@ -195,7 +195,7 @@
       </div>
       <h1>Escola SESI Milton Sobrosa Cordeiro</h1>
       <div class="sub">Acesso rápido aos principais sistemas, planilhas e ferramentas da equipe ✨</div>
-      <div class="tag">📎 Linktree interno 2026</div>
+      <div class="tag">📎 Sincronização inteligente via TOMCAT F14</div>
     </section>
 
     <section class="links">
@@ -209,6 +209,17 @@
         <div class="left"><div class="emoji">⏰</div><div class="txt"><div class="titulo">Planilha de Horário de Aula 2026</div><div class="desc">Consulta rápida dos horários e turmas</div></div></div>
         <div class="seta">↗</div>
       </a>
+
+      <div class="btn" onclick="alert('Abra a câmera do celular e aponte para o QR Code para conectar automaticamente ao Wi-Fi 😊')">
+        <div class="left">
+          <div class="emoji">📶</div>
+          <div class="txt">
+            <div class="titulo">Wi-Fi EDUC</div>
+            <div class="desc">Toque para instruções de conexão automática</div>
+          </div>
+        </div>
+        <div class="seta">ℹ️</div>
+      </div>
 
       <a class="btn" href="https://f14ricardo.github.io/almocosesi/" target="_blank">
         <div class="left"><div class="emoji">🍽️</div><div class="txt"><div class="titulo">Sistema de Almoço TRI</div><div class="desc">Registro e acompanhamento do almoço dos funcionários</div></div></div>
@@ -274,5 +285,22 @@
 
     <div class="rodape">💙 CE 113 • acesso rápido, visual limpo e organizado</div>
   </main>
+
+  <!-- Modal Wi-Fi -->
+  <div id="wifiModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); align-items:center; justify-content:center; z-index:999;">
+    <div style="background:#1e293b; padding:20px; border-radius:16px; text-align:center; max-width:300px; width:90%;">
+      <h3>📶 Wi-Fi EDUC</h3>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=WIFI:T:WPA;S:WIFI-EDUC;P:ac1ce1ss3@educ;;" style="width:200px; margin:10px 0;">
+      <p><strong>Rede:</strong> WIFI-EDUC</p>
+      <p><strong>Senha:</strong> ac1ce1ss3@educ</p>
+      <button onclick="document.getElementById('wifiModal').style.display='none'" style="margin-top:10px; padding:8px 16px; border:none; border-radius:8px; background:#38bdf8; color:#000; cursor:pointer;">Fechar</button>
+    </div>
+  </div>
+
+  <script>
+  function abrirWifi() {
+    document.getElementById('wifiModal').style.display = 'flex';
+  }
+  </script>
 </body>
 </html>
