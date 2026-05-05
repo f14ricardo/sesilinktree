@@ -176,6 +176,90 @@
         align-items: flex-start;
       }
     }
+
+    .btn.protegido {
+      cursor: pointer;
+      position: relative;
+    }
+    .btn.protegido::after {
+      content: "Protegido";
+      position: absolute;
+      top: 8px;
+      right: 46px;
+      font-size: 10px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.18);
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      color: #e0f2fe;
+    }
+    .modal-protegido {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.72);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 16px;
+    }
+    .caixa-protegida {
+      width: 100%;
+      max-width: 340px;
+      background: #1e293b;
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 18px;
+      padding: 22px;
+      text-align: center;
+      box-shadow: 0 18px 48px rgba(0,0,0,0.45);
+    }
+    .caixa-protegida h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+    .caixa-protegida p {
+      margin: 0 0 14px;
+      color: #cbd5e1;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .campo-senha {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.10);
+      color: #fff;
+      outline: none;
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+    .campo-senha::placeholder { color: #94a3b8; }
+    .erro-senha {
+      display: none;
+      color: #fecaca;
+      background: rgba(239, 68, 68, 0.16);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      border-radius: 10px;
+      padding: 8px;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+    .acoes-protegidas {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .btn-modal {
+      border: none;
+      border-radius: 10px;
+      padding: 10px 12px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .btn-cancelar { background: #475569; color: #fff; }
+    .btn-acessar { background: #38bdf8; color: #0f172a; }
     .tag {
       display: inline-block;
       margin-top: 10px;
@@ -232,15 +316,15 @@
         <div class="seta">↗</div>
       </a>
 
-      <a class="btn" href="https://sesisenaispedu-my.sharepoint.com/:o:/g/personal/ricardo_santos67_portalsesisp_org_br/En2QqvuCr4tEvBTwfALly5IBZtIlRYplSIKf9P3tYHXEkQ?e=9409yd" target="_blank">
-        <div class="left"><div class="emoji">✈️</div><div class="txt"><div class="titulo">Tomcat F14</div><div class="desc">Acesso e gerenciamento do sistema Tomcat F14</div></div></div>
-        <div class="seta">↗</div>
-      </a>
+      <div class="btn protegido" onclick="abrirProtegido('tomcat')" role="button" tabindex="0" onkeydown="acionarEnter(event, 'tomcat')">
+        <div class="left"><div class="emoji">✈️</div><div class="txt"><div class="titulo">Tomcat F14</div><div class="desc">Acesso protegido ao sistema Tomcat F14</div></div></div>
+        <div class="seta">🔒</div>
+      </div>
 
-      <a class="btn" href="https://sesisenaispedu-my.sharepoint.com/:f:/g/personal/ricardo_santos67_portalsesisp_org_br/EgqBeegmgltFlokuHTTt98sBtT0rlevH76CF5KvcbhvX4Q?e=0FXipc" target="_blank">
-        <div class="left"><div class="emoji">☁️</div><div class="txt"><div class="titulo">OneDrive Tomcat</div><div class="desc">Acesso e gerenciamento de arquivos do Tomcat via OneDrive</div></div></div>
-        <div class="seta">↗</div>
-      </a>
+      <div class="btn protegido" onclick="abrirProtegido('onedrive')" role="button" tabindex="0" onkeydown="acionarEnter(event, 'onedrive')">
+        <div class="left"><div class="emoji">☁️</div><div class="txt"><div class="titulo">OneDrive Tomcat</div><div class="desc">Acesso protegido aos arquivos do Tomcat</div></div></div>
+        <div class="seta">🔒</div>
+      </div>
 
       <a class="btn" href="https://sesisenaispedu-my.sharepoint.com/:b:/g/personal/ricardo_santos67_portalsesisp_org_br/IQCb6ed0tfYRTbKOZAYqgrqiAcj1i8hq5LnQIe3iMU2vvmQ?e=VxaLrE" target="_blank">
         <div class="left"><div class="emoji">🖼️</div><div class="txt"><div class="titulo">Carômetro</div><div class="desc">Visualização rápida das fotos e identificação dos alunos</div></div></div>
@@ -313,10 +397,89 @@
     </div>
   </div>
 
+
+  <!-- Modal de Acesso Protegido -->
+  <div id="modalProtegido" class="modal-protegido">
+    <div class="caixa-protegida">
+      <h3>🔒 Acesso protegido</h3>
+      <p id="textoProtegido">Digite a senha para continuar.</p>
+      <input id="senhaProtegida" class="campo-senha" type="password" placeholder="Senha de acesso" autocomplete="off">
+      <div id="erroProtegido" class="erro-senha">Senha incorreta. Tente novamente.</div>
+      <div class="acoes-protegidas">
+        <button class="btn-modal btn-cancelar" onclick="fecharProtegido()">Cancelar</button>
+        <button class="btn-modal btn-acessar" onclick="validarProtegido()">Acessar</button>
+      </div>
+    </div>
+  </div>
+
   <script>
+  // Senha simples para proteção visual dos botões internos.
+  // Importante: a segurança real deve ficar nas permissões do SharePoint/OneDrive.
+  const SENHA_TOMCAT = "Tomcat@f14";
+
+  let destinoProtegido = "";
+
+  const linksProtegidos = {
+    tomcat: "aHR0cHM6Ly9zZXNpc2VuYWlzcGVkdS1teS5zaGFyZXBvaW50LmNvbS86bzovZy9wZXJzb25hbC9yaWNhcmRvX3NhbnRvczY3X3BvcnRhbHNlc2lzcF9vcmdfYnIvRW4yUXF2dUNyNHRFdkJUd2ZBTGx5NUlCWnRJbFJZcGxTSUtmOVAzdFlIWEVrUT9lPTk0MDl5ZA==",
+    onedrive: "aHR0cHM6Ly9zZXNpc2VuYWlzcGVkdS1teS5zaGFyZXBvaW50LmNvbS86ZjovZy9wZXJzb25hbC9yaWNhcmRvX3NhbnRvczY3X3BvcnRhbHNlc2lzcF9vcmdfYnIvRWdxQmVlZ21nbHRGbG9rdUhUVHQ5OHNCdFQwcmxldkg3NkNGNUt2Y2Jodlg0UT9lPTBGWGlwYw=="
+  };
+
+  const nomesProtegidos = {
+    tomcat: "Tomcat F14",
+    onedrive: "OneDrive Tomcat"
+  };
+
   function abrirWifi() {
     document.getElementById('wifiModal').style.display = 'flex';
   }
+
+  function abrirProtegido(tipo) {
+    destinoProtegido = tipo;
+    document.getElementById('textoProtegido').innerText = "Digite a senha para acessar: " + nomesProtegidos[tipo];
+    document.getElementById('senhaProtegida').value = "";
+    document.getElementById('erroProtegido').style.display = 'none';
+    document.getElementById('modalProtegido').style.display = 'flex';
+    setTimeout(() => document.getElementById('senhaProtegida').focus(), 100);
+  }
+
+  function fecharProtegido() {
+    document.getElementById('modalProtegido').style.display = 'none';
+    destinoProtegido = "";
+  }
+
+  function validarProtegido() {
+    const senhaDigitada = document.getElementById('senhaProtegida').value.trim();
+
+    if (senhaDigitada === SENHA_TOMCAT && linksProtegidos[destinoProtegido]) {
+      const linkFinal = atob(linksProtegidos[destinoProtegido]);
+      fecharProtegido();
+      window.open(linkFinal, "_blank");
+    } else {
+      document.getElementById('erroProtegido').style.display = 'block';
+      document.getElementById('senhaProtegida').select();
+    }
+  }
+
+  function acionarEnter(event, tipo) {
+    if (event.key === "Enter") {
+      abrirProtegido(tipo);
+    }
+  }
+
+  document.getElementById('senhaProtegida').addEventListener('keydown', function(event) {
+    if (event.key === "Enter") {
+      validarProtegido();
+    }
+    if (event.key === "Escape") {
+      fecharProtegido();
+    }
+  });
+
+  document.getElementById('modalProtegido').addEventListener('click', function(event) {
+    if (event.target.id === 'modalProtegido') {
+      fecharProtegido();
+    }
+  });
   </script>
 </body>
 </html>
