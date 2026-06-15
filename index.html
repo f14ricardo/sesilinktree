@@ -8,271 +8,334 @@
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    * { box-sizing: border-box; }
-    body {
+    :root {
+      --bg-gradient: linear-gradient(135deg, #0b111e 0%, #151f32 50%, #1e293b 100%);
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --btn-bg: rgba(255, 255, 255, 0.04);
+      --btn-border: rgba(255, 255, 255, 0.08);
+      --btn-hover-bg: rgba(255, 255, 255, 0.09);
+      --btn-hover-border: rgba(56, 189, 248, 0.4);
+      --text-main: #f8fafc;
+      --text-sub: #94a3b8;
+      --text-muted: #64748b;
+      --accent-blue: #38bdf8;
+    }
+
+    * { 
+      box-sizing: border-box; 
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(180deg, #0f172a 0%, #1e293b 45%, #334155 100%);
-      color: #fff;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-main);
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px;
+      padding: 40px 24px;
       overflow-x: hidden;
     }
+
     .card {
       width: 100%;
-      max-width: 560px;
-      background: rgba(255,255,255,0.10);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 28px;
-      padding: 28px 22px;
-      box-shadow: 0 18px 50px rgba(0,0,0,0.35);
-      margin: 0 auto;
+      max-width: 860px; /* Alinhamento e contenção perfeita */
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     }
+
     .topo {
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
+
     .avatar {
       width: 92px;
       height: 92px;
-      margin: 0 auto 14px;
-      border-radius: 50%;
+      margin-bottom: 20px;
+      border-radius: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 42px;
-      background: linear-gradient(135deg, #38bdf8, #22c55e);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      background: #ffffff;
+      padding: 12px;
+      box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.3);
     }
 
     .avatar img {
-      width: 80%;
+      width: 100%;
       height: auto;
       object-fit: contain;
     }
+
     h1 {
-      margin: 0;
-      font-size: 28px;
-      letter-spacing: 0.4px;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+      max-width: 600px;
+      line-height: 1.3;
     }
+
     .sub {
-      margin-top: 8px;
-      color: #dbeafe;
+      margin-top: 12px;
+      color: var(--text-sub);
       font-size: 14px;
-      line-height: 1.5;
+      line-height: 1.6;
+      max-width: 540px;
     }
+
+    .tag {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.15);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--accent-blue);
+      letter-spacing: 0.3px;
+    }
+
+    /* Grid seguro que impede estouro de conteúdo */
     .links {
       display: grid;
-      gap: 14px;
-      margin-top: 24px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 12px;
+      width: 100%;
     }
+
     .btn {
       text-decoration: none;
-      color: #fff;
-      background: rgba(255,255,255,0.13);
-      border: 1px solid rgba(255,255,255,0.16);
-      border-radius: 18px;
-      padding: 16px 18px;
+      color: var(--text-main);
+      background: var(--btn-bg);
+      border: 1px solid var(--btn-border);
+      border-radius: 16px;
+      padding: 16px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
-      box-shadow: 0 10px 22px rgba(0,0,0,0.18);
+      gap: 14px;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      min-width: 0; /* Correção vital para Grid/Flexbox */
+      width: 100%;
     }
+
     .btn:hover {
-      transform: translateY(-2px) scale(1.01);
-      background: rgba(255,255,255,0.18);
-      box-shadow: 0 16px 28px rgba(0,0,0,0.24);
+      transform: translateY(-2px);
+      background: var(--btn-hover-bg);
+      border-color: var(--btn-hover-border);
+      box-shadow: 0 12px 20px -8px rgba(56, 189, 248, 0.3);
     }
+
     .btn.disabled {
-      opacity: 0.72;
-      cursor: default;
+      opacity: 0.5;
+      cursor: not-allowed;
     }
+
     .left {
       display: flex;
       align-items: center;
-      gap: 12px;
-      min-width: 0;
+      gap: 14px;
+      min-width: 0; /* Impede que os textos empurrem o botão */
+      flex: 1;
     }
+
     .emoji {
-      font-size: 24px;
-      width: 34px;
-      text-align: center;
+      font-size: 22px;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
     }
+
     .txt {
-      min-width: 0;
+      min-width: 0; /* Ativa o truncamento de texto longo dentro do flexbox */
+      flex: 1;
     }
+
     .titulo {
-      font-weight: 700;
-      font-size: 15px;
-      line-height: 1.3;
-    }
-    .desc {
-      font-size: 12px;
-      color: #dbeafe;
-      margin-top: 3px;
+      font-weight: 600;
+      font-size: 14.5px;
+      line-height: 1.4;
+      color: #ffffff;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
+
+    .desc {
+      font-size: 12px;
+      color: var(--text-sub);
+      margin-top: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; /* Corta elegantemente com ... se faltar espaço */
+    }
+
     .seta {
-      font-size: 18px;
-      opacity: 0.9;
+      font-size: 16px;
+      color: var(--text-muted);
+      transition: color 0.2s, transform 0.2s;
       flex-shrink: 0;
     }
+
+    .btn:hover .seta {
+      color: var(--accent-blue);
+      transform: translateX(2px);
+    }
+
     .rodape {
-      margin-top: 22px;
+      margin-top: 36px;
       text-align: center;
-      font-size: 12px;
-      color: #cbd5e1;
+      font-size: 13px;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 24px;
     }
 
-    @media (max-width: 480px) {
-      body {
-        padding: 12px;
-        align-items: flex-start;
-      }
-
-      .card {
-        max-width: 100%;
-        border-radius: 22px;
-        padding: 20px 14px;
-      }
-
-      .avatar {
-        width: 78px;
-        height: 78px;
-        font-size: 34px;
-      }
-
-      h1 {
-        font-size: 22px;
-      }
-
-      .sub {
-        font-size: 13px;
-      }
-
-      .btn {
-        padding: 14px 14px;
-        border-radius: 16px;
-      }
-
-      .titulo {
-        font-size: 14px;
-      }
-
-      .desc {
-        font-size: 11px;
-        white-space: normal;
-      }
-    }
-
-    @media (max-height: 740px) {
-      body {
-        align-items: flex-start;
-      }
-    }
-
+    /* Estilos de Proteção Restrita */
     .btn.protegido {
-      cursor: pointer;
       position: relative;
     }
+    
     .btn.protegido::after {
-      content: "Protegido";
+      content: "Restrito";
       position: absolute;
-      top: 8px;
-      right: 46px;
-      font-size: 10px;
-      padding: 3px 7px;
+      top: -8px;
+      right: 12px;
+      font-size: 9px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 1px 8px;
       border-radius: 999px;
-      background: rgba(56, 189, 248, 0.18);
-      border: 1px solid rgba(56, 189, 248, 0.28);
-      color: #e0f2fe;
+      background: rgba(234, 179, 8, 0.15);
+      border: 1px solid rgba(234, 179, 8, 0.3);
+      color: #fde047;
     }
-    .modal-protegido {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.72);
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      padding: 16px;
+
+    .btn.protegido:hover .seta {
+      color: #fde047;
     }
-    .caixa-protegida {
+
+    /* Modais */
+    .modal-protegido, #wifiModal {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .caixa-protegida, .caixa-wifi {
       width: 100%;
-      max-width: 340px;
-      background: #1e293b;
-      border: 1px solid rgba(255,255,255,0.16);
-      border-radius: 18px;
-      padding: 22px;
+      max-width: 360px;
+      background: #111827;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 28px;
       text-align: center;
-      box-shadow: 0 18px 48px rgba(0,0,0,0.45);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
     }
-    .caixa-protegida h3 {
-      margin: 0 0 8px;
+
+    .caixa-protegida h3, .caixa-wifi h3 {
       font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
     }
-    .caixa-protegida p {
-      margin: 0 0 14px;
-      color: #cbd5e1;
-      font-size: 13px;
+
+    .caixa-protegida p, .caixa-wifi p {
+      color: var(--text-sub);
+      font-size: 14px;
       line-height: 1.5;
+      margin-bottom: 16px;
     }
+
     .campo-senha {
       width: 100%;
-      padding: 12px 14px;
-      border: 1px solid rgba(255,255,255,0.18);
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 12px;
-      background: rgba(255,255,255,0.10);
+      background: rgba(255, 255, 255, 0.05);
       color: #fff;
       outline: none;
+      font-family: inherit;
       font-size: 15px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      transition: border 0.2s;
     }
-    .campo-senha::placeholder { color: #94a3b8; }
+
+    .campo-senha:focus {
+      border-color: var(--accent-blue);
+    }
+
     .erro-senha {
       display: none;
-      color: #fecaca;
-      background: rgba(239, 68, 68, 0.16);
-      border: 1px solid rgba(239, 68, 68, 0.25);
+      color: #fca5a5;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.2);
       border-radius: 10px;
-      padding: 8px;
-      font-size: 12px;
-      margin-bottom: 10px;
+      padding: 10px;
+      font-size: 13px;
+      margin-bottom: 12px;
     }
+
     .acoes-protegidas {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 10px;
+      gap: 12px;
     }
+
     .btn-modal {
       border: none;
-      border-radius: 10px;
-      padding: 10px 12px;
+      border-radius: 12px;
+      padding: 12px;
       cursor: pointer;
-      font-weight: 700;
+      font-weight: 600;
+      font-size: 14px;
+      font-family: inherit;
+      transition: background 0.2s;
     }
-    .btn-cancelar { background: #475569; color: #fff; }
-    .btn-acessar { background: #38bdf8; color: #0f172a; }
-    .tag {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.12);
-      font-size: 12px;
-      color: #e2e8f0;
+
+    .btn-cancelar { background: #374151; color: #f3f4f6; }
+    .btn-cancelar:hover { background: #4b5563; }
+    .btn-acessar { background: var(--accent-blue); color: #0f172a; }
+    .btn-acessar:hover { background: #7dd3fc; }
+
+    /* Responsividade Eficiente */
+    @media (max-width: 768px) {
+      .links {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 16px; }
+      .card { padding: 28px 18px; border-radius: 20px; }
+      h1 { font-size: 22px; }
+      .sub { font-size: 13px; }
     }
   </style>
 </head>
@@ -280,7 +343,7 @@
   <main class="card">
     <section class="topo">
       <div class="avatar">
-        <img src="https://www.sesisp.org.br/images/Sesi-SP.jpg" alt="SESI" width="80px">
+        <img src="https://www.sesisp.org.br/images/Sesi-SP.jpg" alt="SESI">
       </div>
       <h1>Escola SESI Milton Sobrosa Cordeiro</h1>
       <div class="sub">Acesso rápido aos principais sistemas, planilhas e ferramentas da equipe ✨</div>
@@ -299,7 +362,6 @@
         <div class="seta">↗</div>
       </a>
 
-      <!-- Wi-Fi - onclick="alert('SSID: WIFI-EDUC\nSenha: ac1ce1ss3@educ')" -->
       <div class="btn" onclick="abrirWifi()">
         <div class="left">
           <div class="emoji">📶</div>
@@ -342,17 +404,27 @@
       </a>
 
       <a class="btn" href="http://gestaoemaileducacional.sesisenaispedu.org.br/" target="_blank">
-        <div class="left"><div class="emoji">📧</div><div class="txt"><div class="titulo">Gestão de E-mails SESI SENAI</div><div class="desc">Gerenciamento e suporte dos e-mails institucionais</div></div></div>
+        <div class="left"><div class="emoji">📧</div><div class="txt"><div class="titulo">Gestão de E-mails SESI</div><div class="desc">Gerenciamento e suporte dos e-mails institucionais</div></div></div>
         <div class="seta">↗</div>
       </a>
 
       <a class="btn" href="https://sisae.sesisenaisp.org.br/" target="_blank">
-        <div class="left"><div class="emoji">📝</div><div class="txt"><div class="titulo">SISAE SESI SENAI</div><div class="desc">Sistema de Notas Oficial SESI SENAI</div></div></div>
+        <div class="left"><div class="emoji">📝</div><div class="txt"><div class="titulo">Sisae SESI SENAI</div><div class="desc">Sistema de Notas Oficial SESI SENAI</div></div></div>
         <div class="seta">↗</div>
       </a>
 
-      <a class="btn" href="https://calendar.online/a7ea62872116733395eb" target="_blank">
-        <div class="left"><div class="emoji">🗓️</div><div class="txt"><div class="titulo">Calendário de Eventos 113</div><div class="desc">Calendário dos Eventos do CE 113 de Mogi das Cruzes</div></div></div>
+      <a class="btn" href="https://dce.sesisp.org.br/" target="_blank">
+        <div class="left"><div class="emoji">📘</div><div class="txt"><div class="titulo">DCE - Diário de Classe</div><div class="desc">Acesso ao Diário de Classe Escolar SESI</div></div></div>
+        <div class="seta">↗</div>
+      </a>
+
+      <a class="btn" href="https://docs.google.com/gview?embedded=true&url=https://raw.githubusercontent.com/f14ricardo/sesilinktree/main/SISAE%20Diario%20de%20Classe%202026.pdf" target="_blank">
+        <div class="left"><div class="emoji">📄</div><div class="txt"><div class="titulo">SISAE Lista de Alunos PDF</div><div class="desc">Visualização do PDF diretamente no navegador</div></div></div>
+        <div class="seta">↗</div>
+      </a>
+
+      <a class="btn" href="https://meuemail.sesisenaisp.org.br" target="_blank">
+        <div class="left"><div class="emoji">📨</div><div class="txt"><div class="titulo">Criação de E-mails SESI</div><div class="desc">Solicitação e criação de novos e-mails institucionais</div></div></div>
         <div class="seta">↗</div>
       </a>
 
@@ -361,8 +433,8 @@
         <div class="seta">↗</div>
       </a>
 
-      <a class="btn" href="https://integracaoad.sesisenaisp.org.br/MinhaAssinatura" target="_blank">
-        <div class="left"><div class="emoji">✍️</div><div class="txt"><div class="titulo">Gerador de Assinaturas</div><div class="desc">Criação de assinaturas institucionais padronizadas</div></div></div>
+      <a class="btn" href="https://sesisenaisp.atlassian.net/servicedesk/customer/portals" target="_blank">
+        <div class="left"><div class="emoji">🛠️</div><div class="txt"><div class="titulo">Abertura de Chamado GSTI</div><div class="desc">Portal para abertura e acompanhamento de chamados</div></div></div>
         <div class="seta">↗</div>
       </a>
 
@@ -371,47 +443,44 @@
         <div class="seta">↗</div>
       </a>
 
-      <a class="btn" href="https://www.conectasesi.com.br/login/" target="_blank">
-        <div class="left"><div class="emoji">✅</div><div class="txt"><div class="titulo">Conecta SESI</div><div class="desc">Visualize os livros diretamente do seu dispositivo</div></div></div>
+      <a class="btn" href="https://sesisenaisp-my.sharepoint.com/personal/evandro_paula_sesisp_org_br/_layouts/15/onedrive.aspx" target="_blank">
+        <div class="left"><div class="emoji">✅</div><div class="txt"><div class="titulo">Lista de Presença Personaliza</div><div class="desc">Controle de presença e registros via OneDrive</div></div></div>
         <div class="seta">↗</div>
       </a>
 
-      <a class="btn" href="https://layers.education/" target="_blank">
-        <div class="left"><div class="emoji">📚</div><div class="txt"><div class="titulo">APP Layers Education</div><div class="desc">APP Gerenciador do Escola SESI</div></div></div>
+      <a class="btn" href="https://sesisenaispedu-my.sharepoint.com/:f:/g/personal/ricardo_santos67_portalsesisp_org_br/IgAt2ZkvTi-oQbb3uT6XtBjrAc9Z7ohX3wjctXMc-ELF6iw" target="_blank">
+        <div class="left"><div class="emoji">📚</div><div class="txt"><div class="titulo">Planilha Personaliza</div><div class="desc">Planilhas e materiais de apoio do Personaliza</div></div></div>
         <div class="seta">↗</div>
       </a>
 
       <a class="btn" href="https://sesisenaispedu-my.sharepoint.com/:x:/g/personal/ricardo_santos67_portalsesisp_org_br/IQCx9-jKcfdfSZwUKvzn82rXAbGAiQp_w79gedfeIe3acho?e=V4c1pM" target="_blank">
-        <div class="left"><div class="emoji">📊</div><div class="txt"><div class="titulo">Planilha Conselho</div><div class="desc">Espaço reservado para a planilha do conselho</div></div></div>
+        <div class="left"><div class="emoji">📊</div><div class="txt"><div class="titulo">Planilha Conselho</div><div class="desc">Acesso à planilha do conselho</div></div></div>
         <div class="seta">↗</div>
       </a>
 
       <div class="btn disabled">
-        <div class="left"><div class="emoji">📝</div><div class="txt"><div class="titulo">Sistema de Rubricas de Avaliação</div><div class="desc">Espaço reservado para o sistema de rubricas</div></div></div>
+        <div class="left"><div class="emoji">📝</div><div class="txt"><div class="titulo">Sistema de Rubricas</div><div class="desc">Espaço reservado para o sistema de rubricas</div></div></div>
         <div class="seta">•</div>
       </div>
 
     </section>
 
-    <div class="rodape">💙 CE 113 • acesso rápido, visual limpo e organizado</div>
+    <div class="rodape">💙 CE 113 • Acesso rápido, visual limpo e organizado</div>
   </main>
 
-  <!-- Modal Wi-Fi -->
-  <div id="wifiModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); align-items:center; justify-content:center; z-index:999;">
-    <div style="background:#1e293b; padding:20px; border-radius:16px; text-align:center; max-width:300px; width:90%;">
+  <div id="wifiModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); align-items:center; justify-content:center; z-index:999; padding: 16px;">
+    <div class="caixa-wifi">
       <h3>📶 Wi-Fi EDUC</h3>
-      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=WIFI:T:WPA;S:WIFI-EDUC;P:ac1ce1ss3@educ;;" style="width:200px; margin:10px 0;">
-      <p><strong>Rede:</strong> WIFI-EDUC</p>
-      <p><strong>Senha:</strong> ac1ce1ss3@educ</p>
-      <button onclick="document.getElementById('wifiModal').style.display='none'" style="margin-top:10px; padding:8px 16px; border:none; border-radius:8px; background:#38bdf8; color:#000; cursor:pointer;">Fechar</button>
+      <p>Aponte a câmera para conectar automaticamente ou use os dados abaixo.</p>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=WIFI:T:WPA;S:WIFI-EDUC;P:ac1ce1ss3@educ;;" style="width:180px; height:180px; border-radius: 12px; margin:10px 0; border: 4px solid #fff;">
+      <p style="margin-top: 10px; font-size: 13px;"><strong>Rede:</strong> <span style="color: #fff;">WIFI-EDUC</span><br><strong>Senha:</strong> <span style="color: #fff;">ac1ce1ss3@educ</span></p>
+      <button onclick="document.getElementById('wifiModal').style.display='none'" class="btn-modal btn-cancelar" style="width: 100%; margin-top: 10px;">Fechar</button>
     </div>
   </div>
 
-
-  <!-- Modal de Acesso Protegido -->
-  <div id="modalProtegido" class="modal-protegido">
+  <div id="modalProtegido" class="modal-protegido" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; z-index: 1000; padding: 16px;">
     <div class="caixa-protegida">
-      <h3>🔒 Acesso protegido</h3>
+      <h3>🔒 Área Restrita</h3>
       <p id="textoProtegido">Digite a senha para continuar.</p>
       <input id="senhaProtegida" class="campo-senha" type="password" placeholder="Senha de acesso" autocomplete="off">
       <div id="erroProtegido" class="erro-senha">Senha incorreta. Tente novamente.</div>
@@ -423,10 +492,7 @@
   </div>
 
   <script>
-  // Senha simples para proteção visual dos botões internos.
-  // Importante: a segurança real deve ficar nas permissões do SharePoint/OneDrive.
   const SENHA_TOMCAT = "Tomcat@f14";
-
   let destinoProtegido = "";
 
   const linksProtegidos = {
@@ -445,7 +511,7 @@
 
   function abrirProtegido(tipo) {
     destinoProtegido = tipo;
-    document.getElementById('textoProtegido').innerText = "Digite a senha para acessar: " + nomesProtegidos[tipo];
+    document.getElementById('textoProtegido').innerText = "Identificação necessária para " + nomesProtegidos[tipo];
     document.getElementById('senhaProtegida').value = "";
     document.getElementById('erroProtegido').style.display = 'none';
     document.getElementById('modalProtegido').style.display = 'flex';
