@@ -326,72 +326,6 @@
 
 
 
-    /* Calendário compartilhado */
-    .calendar-section {
-      margin-top: 28px;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-    .calendar-head {
-      padding: 18px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .calendar-title {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-    }
-
-    .calendar-title strong {
-      display: block;
-      font-size: 15px;
-      color: #ffffff;
-      line-height: 1.4;
-    }
-
-    .calendar-title span {
-      display: block;
-      margin-top: 3px;
-      font-size: 12px;
-      color: var(--text-sub);
-      line-height: 1.4;
-    }
-
-    .calendar-open {
-      text-decoration: none;
-      color: #0f172a;
-      background: var(--accent-blue);
-      border-radius: 999px;
-      padding: 9px 14px;
-      font-size: 12px;
-      font-weight: 700;
-      white-space: nowrap;
-      transition: filter 0.2s, transform 0.2s;
-    }
-
-    .calendar-open:hover {
-      filter: brightness(1.08);
-      transform: translateY(-1px);
-    }
-
-    .calendar-frame {
-      width: 100%;
-      height: 620px;
-      border: 0;
-      display: block;
-      background: #ffffff;
-    }
-
     /* Responsividade Eficiente */
     @media (max-width: 768px) {
       .links {
@@ -404,9 +338,6 @@
       .card { padding: 28px 18px; border-radius: 20px; }
       h1 { font-size: 22px; }
       .sub { font-size: 13px; }
-      .calendar-head { align-items: flex-start; flex-direction: column; }
-      .calendar-open { width: 100%; text-align: center; }
-      .calendar-frame { height: 520px; }
     }
   </style>
 </head>
@@ -519,13 +450,13 @@
         <div class="seta">↗</div>
       </a>
 
-      <a class="btn" href="https://sesisenaisp-my.sharepoint.com/personal/evandro_paula_sesisp_org_br/_layouts/15/onedrive.aspx" target="_blank">
-        <div class="left"><div class="emoji">✅</div><div class="txt"><div class="titulo">Lista de Presença Personaliza</div><div class="desc">Controle de presença e registros via OneDrive</div></div></div>
+      <a class="btn" href="https://www.conectasesi.com.br/login/" target="_blank">
+        <div class="left"><div class="emoji">✅</div><div class="txt"><div class="titulo">Conecta SESI</div><div class="desc">Acesso ao Conecta SESI para controle de presença</div></div></div>
         <div class="seta">↗</div>
       </a>
 
-      <a class="btn" href="https://sesisenaispedu-my.sharepoint.com/:f:/g/personal/ricardo_santos67_portalsesisp_org_br/IgAt2ZkvTi-oQbb3uT6XtBjrAc9Z7ohX3wjctXMc-ELF6iw" target="_blank">
-        <div class="left"><div class="emoji">📚</div><div class="txt"><div class="titulo">Planilha Personaliza</div><div class="desc">Planilhas e materiais de apoio do Personaliza</div></div></div>
+      <a class="btn" href="https://sesisp.layers.education/@sesisp-ce113/" target="_blank">
+        <div class="left"><div class="emoji">📚</div><div class="txt"><div class="titulo">APP SESI Layers</div><div class="desc">Acesso ao ambiente SESI Layers do CE 113</div></div></div>
         <div class="seta">↗</div>
       </a>
 
@@ -539,20 +470,6 @@
         <div class="seta">•</div>
       </div>
 
-    </section>
-
-    <section class="calendar-section" aria-label="Calendário de Eventos SESI 113">
-      <div class="calendar-head">
-        <div class="calendar-title">
-          <div class="emoji">🗓️</div>
-          <div>
-            <strong>Calendário de Eventos SESI 113</strong>
-            <span>Eventos compartilhados do CE 113 Mogi das Cruzes</span>
-          </div>
-        </div>
-        <a class="calendar-open" href="https://calendar.online/a7ea62872116733395eb" target="_blank">Abrir calendário ↗</a>
-      </div>
-      <iframe class="calendar-frame" src="https://calendar.online/a7ea62872116733395eb" title="Calendário de Eventos SESI 113" loading="lazy"></iframe>
     </section>
 
     <div class="rodape">💙 CE 113 • Acesso rápido, visual limpo e organizado</div>
